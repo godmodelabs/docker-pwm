@@ -7,7 +7,7 @@ RUN apt-get update -q -y && \
 
 # Pull and build
 RUN cd /usr/src && \
-    git pull https://github.com/pwm-project/pwm.git && \
+    git clone https://github.com/pwm-project/pwm.git && \
     cd /usr/src/pwm && \
     mvn clean package
 
