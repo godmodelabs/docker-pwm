@@ -3,7 +3,7 @@ FROM maven:3.6-jdk-8-slim AS build-env
 
 # Additional tools required for the build
 RUN apt-get update -q -y && \
-    apt-get install -q -y bzip2
+    apt-get install -q -y bzip2 git
 
 # Pull and build
 RUN cd /usr/src && \
