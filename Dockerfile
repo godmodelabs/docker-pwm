@@ -1,5 +1,5 @@
 # build-env container
-FROM maven:3.6-jdk-8-slim AS build-env
+FROM maven:3-jdk-8-slim AS build-env
 
 # Additional tools required for the build
 RUN apt-get update -q -y && \
