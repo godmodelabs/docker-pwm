@@ -16,7 +16,8 @@ FROM adoptopenjdk/openjdk11:jre
 
 WORKDIR /app/libs
 VOLUME /config
-EXPOSE 8443
+EXPOSE 8443 # TLS
+EXPOSE 8080 # TLS
 
 COPY --from=build-env /usr/src/pwm/onejar/target/* /app/libs/
 COPY --from=build-env /usr/src/pwm/docker/src/main/image-files/app/* /app/
