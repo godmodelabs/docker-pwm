@@ -15,11 +15,13 @@ RUN cd /usr/src && \
 FROM tomcat:9-jdk11-openjdk-slim
 
 # Config
-RUN ln -sf /usr/local/tomcat/webapps/login/WEB-INF /config
-VOLUME /config
+VOLUME /usr/local/tomcat/webapps/login/config
 # HTTPS port
 EXPOSE 8443
 # HTTP port
 EXPOSE 8080
 
 COPY --from=build-env /usr/src/pwm/webapp/target/pwm-*.war /usr/local/tomcat/webapps/login.war
+RUN cd /usr/local/tomcat/webapps/login && \
+    jar -x --file=../login.war && \
+    chmod a+x /usr/local/tomcat/webapps/login/WEB-INF/command.sh
