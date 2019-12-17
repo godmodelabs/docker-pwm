@@ -14,14 +14,10 @@ RUN cd /usr/src && \
 # application container
 FROM tomcat:9-jdk11-openjdk-slim
 
+ENV export PWM_APPLICATIONPATH='/config'
 # Config
-VOLUME /usr/local/tomcat/webapps/login/config
-# HTTPS port
-EXPOSE 8443
+VOLUME /config
 # HTTP port
 EXPOSE 8080
 
 COPY --from=build-env /usr/src/pwm/webapp/target/pwm-*.war /usr/local/tomcat/webapps/login.war
-RUN cd /usr/local/tomcat/webapps/login && \
-    jar -x --file=../login.war && \
-    chmod a+x /usr/local/tomcat/webapps/login/WEB-INF/command.sh
