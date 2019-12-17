@@ -14,7 +14,7 @@ RUN cd /usr/src && \
 # application container
 FROM tomcat:9-jdk11-openjdk-slim
 
-ENV export PWM_APPLICATIONPATH='/config'
+ENV PWM_APPLICATIONPATH /config
 # Config
 VOLUME /config
 # HTTP port
