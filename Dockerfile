@@ -9,7 +9,7 @@ RUN apt-get update -q -y && \
 RUN cd /usr/src && \
     git clone https://github.com/pwm-project/pwm.git && \
     cd /usr/src/pwm && \
-    mvn clean package
+    mvn --batch-mode clean package
 
 # application container
 FROM adoptopenjdk/openjdk11:jre
