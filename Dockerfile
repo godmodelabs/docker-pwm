@@ -12,17 +12,13 @@ RUN cd /usr/src && \
     mvn --batch-mode clean package
 
 # application container
-FROM adoptopenjdk/openjdk11:jre
+FROM tomcat:9-jdk11-openjdk-slim
 
-WORKDIR /app/libs
-VOLUME /config
-# TLS port
+# Config
+VOLUME /usr/local/tomcat/webapps/login/WEB-INF
+# HTTPS port
 EXPOSE 8443
 # HTTP port
 EXPOSE 8080
 
-COPY --from=build-env /usr/src/pwm/onejar/target/* /app/libs/
-COPY --from=build-env /usr/src/pwm/docker/src/main/image-files/app/* /app/
-RUN chmod a+x /app/*.sh
-
-ENTRYPOINT ["/app/startup.sh"]
+COPY --from=build-env /usr/src/pwm/webapp/target/pwm-*.war /usr/local/tomcat/webapps/login.war
