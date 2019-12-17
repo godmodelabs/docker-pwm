@@ -15,7 +15,8 @@ RUN cd /usr/src && \
 FROM tomcat:9-jdk11-openjdk-slim
 
 # Config
-VOLUME /usr/local/tomcat/webapps/login/WEB-INF
+RUN ln -sf /usr/local/tomcat/webapps/login/WEB-INF /config
+VOLUME /config
 # HTTPS port
 EXPOSE 8443
 # HTTP port
