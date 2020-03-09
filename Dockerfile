@@ -14,6 +14,8 @@ RUN cd /usr/src && \
 # application container
 FROM tomcat:9-jdk11-openjdk-slim
 
+LABEL maintainer="Rainer Stumbaum"
+
 ENV PWM_APPLICATIONPATH /config
 # Config
 VOLUME /config
